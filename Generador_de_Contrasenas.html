@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas Seguras</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        input[type="number"] {
+            width: 70px;
+            padding: 12px;
+            margin-right: 10px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #password {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 18px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Contraseñas Seguras</h1>
+        <div>
+            <input type="number" id="length" min="8" max="128" value="12"> Longitud
+            <button onclick="generatePassword()">Generar Contraseña</button>
+        </div>
+        <input type="text" id="password" readonly>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const length = parseInt(document.getElementById('length').value) || 12;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:',.<>?/";
+            let password = '';
+            
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+
+            document.getElementById('password').value = password;
+        }
+    </script>
+</body>
+</html>
